@@ -7,6 +7,7 @@ import Services from "../components/sections/Services"
 import Pricing from "../components/sections/Pricing";
 import WhyChoose from "../components/sections/WhyChoose";
 import Contact from "../components/sections/Contact";
+import Footer from "../components/layout/Footer";
 
 export default function Home() {
   const [lang, setLang] = useState("en");
@@ -37,9 +38,10 @@ export default function Home() {
       <TrustStrip lang={lang} />
       <About lang={lang} />
       <Services lang={lang} />
-      <Pricing lang={lang} />
+      {/* <Pricing lang={lang} /> */}
       <WhyChoose lang={lang} />
       <Contact lang={lang} />
+      <Footer lang={lang} />
       {/* dst */}
 
     </div>

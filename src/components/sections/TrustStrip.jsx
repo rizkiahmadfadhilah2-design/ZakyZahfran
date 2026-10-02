@@ -1,41 +1,27 @@
 import { useState } from "react";
 
 export default function TrustStrip({ lang }) {
-  const [filter, setFilter] = useState("all");
 
-  const categories = [
-    { key: "all", label: lang === "en" ? "All" : "Semua" },
-    { key: "corporate", label: lang === "en" ? "Corporate" : "Perusahaan" },
-    { key: "banking", label: lang === "en" ? "Banking" : "Perbankan" },
-    { key: "investment", label: lang === "en" ? "Investment" : "Investasi" },
-    { key: "startup", label: lang === "en" ? "Startup" : "Startup" },
-    { key: "property", label: lang === "en" ? "Property" : "Properti" },
+  const legalClients = [
+    "PT Pertamina (Persero)",
+    "Bank Mandiri Tbk",
+    "PT Telkom Indonesia",
+    "Nusantara Property Group",
   ];
 
-  const clients = [
-    { name: "PT Pertamina (Persero)", type: "corporate" },
-    { name: "Bank Mandiri Tbk", type: "banking" },
-    { name: "PT Telkom Indonesia", type: "corporate" },
-    { name: "Astra International", type: "corporate" },
-    { name: "Startup Fintech Nusantara", type: "startup" },
-    { name: "Nusantara Property Group", type: "property" },
-    { name: "Private Investment Group", type: "investment" },
-    { name: "High Net Worth Individual", type: "investment" },
+  const taxClients = [
+    "Astra International",
+    "Startup Fintech Nusantara",
+    "Private Investment Group",
+    "High Net Worth Individual",
   ];
-
-  const filtered =
-    filter === "all"
-      ? clients
-      : clients.filter((c) => c.type === filter);
 
   return (
-    <section className="bg-white border-y border-gray-100 py-14">
-
+    <section className="bg-white border-y border-gray-100 py-16">
       <div className="max-w-7xl mx-auto px-6">
 
         {/* HEADER */}
-        <div className="text-center max-w-2xl mx-auto">
-
+        <div className="text-center max-w-2xl mx-auto mb-14">
           <p className="text-xs uppercase tracking-[0.3em] text-gray-400">
             {lang === "en"
               ? "Trusted Across Industries"
@@ -44,78 +30,94 @@ export default function TrustStrip({ lang }) {
 
           <h3 className="text-2xl md:text-3xl font-semibold mt-3 text-gray-900">
             {lang === "en"
-              ? "Legal & Tax Advisory for Growing Businesses"
-              : "Konsultan Hukum & Pajak untuk Bisnis Berkembang"}
+              ? "Laws & Tax Advisory Excellence"
+              : "Keunggulan Konsultan Hukum & Pajak"}
           </h3>
 
           <p className="text-sm text-gray-500 mt-3">
             {lang === "en"
-              ? "Select industry to view representative clients"
-              : "Pilih industri untuk melihat klien"}
+              ? "Our expertise is divided into two core advisory pillars"
+              : "Keahlian kami terbagi dalam dua pilar utama"}
           </p>
-
         </div>
 
-        {/* FILTER BUTTONS */}
-        <div className="flex flex-wrap justify-center gap-3 mt-8">
+        {/* ================= TWO GAP SECTION ================= */}
+        <div className="grid md:grid-cols-2 gap-10">
 
-          {categories.map((cat) => (
-            <button
-              key={cat.key}
-              onClick={() => setFilter(cat.key)}
-              className={`px-4 py-2 rounded-full text-sm border transition
-                ${
-                  filter === cat.key
-                    ? "bg-black text-white border-black"
-                    : "bg-white text-gray-600 border-gray-200 hover:border-black hover:text-black"
-                }
-              `}
-            >
-              {cat.label}
-            </button>
-          ))}
+          {/* LEFT - LEGAL */}
+          <div className="p-6 border rounded-2xl bg-gray-50">
+            <h4 className="text-lg font-semibold text-gray-900 mb-4">
+              ⚖️ Legal Advisory Clients
+            </h4>
 
-        </div>
+            <p className="text-sm text-gray-500 mb-6">
+              Corporate legal structuring, compliance, litigation, and business protection.
+            </p>
 
-        {/* CLIENT GRID */}
-        <div className="mt-10 grid md:grid-cols-3 gap-4 transition-all">
-
-          {filtered.map((c, i) => (
-            <div
-              key={i}
-              className="p-5 border rounded-xl bg-gray-50 hover:bg-white hover:shadow-sm transition"
-            >
-              <p className="font-semibold text-gray-900">{c.name}</p>
-              <p className="text-xs text-gray-500 mt-1 uppercase">
-                {c.type}
-              </p>
+            <div className="space-y-3">
+              {legalClients.map((c, i) => (
+                <div
+                  key={i}
+                  className="p-3 bg-white border rounded-xl hover:shadow-sm transition"
+                >
+                  <p className="font-medium text-gray-900 text-sm">
+                    {c}
+                  </p>
+                  <p className="text-xs text-blue-600 mt-1">
+                    Legal Advisory
+                  </p>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
+
+          {/* RIGHT - TAX */}
+          <div className="p-6 border rounded-2xl bg-gray-50">
+            <h4 className="text-lg font-semibold text-gray-900 mb-4">
+              💰 Tax Advisory Clients
+            </h4>
+
+            <p className="text-sm text-gray-500 mb-6">
+              Tax planning, compliance optimization, and financial risk mitigation.
+            </p>
+
+            <div className="space-y-3">
+              {taxClients.map((c, i) => (
+                <div
+                  key={i}
+                  className="p-3 bg-white border rounded-xl hover:shadow-sm transition"
+                >
+                  <p className="font-medium text-gray-900 text-sm">
+                    {c}
+                  </p>
+                  <p className="text-xs text-green-600 mt-1">
+                    Tax Advisory
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
 
         </div>
 
-        {/* STATS */}
-        <div className="mt-12 flex flex-wrap justify-center gap-10 text-center">
+        {/* ================= STATS ================= */}
+        <div className="mt-14 flex flex-wrap justify-center gap-10 text-center">
 
           <div>
-            <p className="text-xl font-semibold text-gray-900">50+</p>
+            <p className="text-xl font-semibold">50+</p>
             <p className="text-xs text-gray-500">
               {lang === "en" ? "Clients Served" : "Klien Ditangani"}
             </p>
           </div>
 
           <div>
-            <p className="text-xl font-semibold text-gray-900">100%</p>
-            <p className="text-xs text-gray-500">
-              {lang === "en" ? "Compliance Focus" : "Fokus Kepatuhan"}
-            </p>
+            <p className="text-xl font-semibold">70%</p>
+            <p className="text-xs text-gray-500">Legal Advisory</p>
           </div>
 
           <div>
-            <p className="text-xl font-semibold text-gray-900">5+</p>
-            <p className="text-xs text-gray-500">
-              {lang === "en" ? "Years Experience" : "Tahun Pengalaman"}
-            </p>
+            <p className="text-xl font-semibold">30%</p>
+            <p className="text-xs text-gray-500">Tax Advisory</p>
           </div>
 
         </div>

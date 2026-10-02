@@ -7,8 +7,8 @@ export default function Contact({ lang }) {
     message: "",
   });
 
-  const phone = "6281234567890";
-  const email = "legal@yourfirm.com";
+  const phone = "6282242887887";
+  const email = "kingmada@zakyzhafran.com";
 
   const sendWA = () => {
     const text = `
@@ -72,9 +72,9 @@ ${form.message}
 
           {/* CONTACT INFO */}
           <div className="mt-10 space-y-2 text-sm text-gray-500">
-            <p>📍 Indonesia Legal Office</p>
-            <p>📞 +62 812-3456-7890</p>
-            <p>✉️ legal@yourfirm.com</p>
+            <p>📍 Villa Bekasi Indah 1 No.2 Blok G1, RT.005/RW.012, Mangunjaya, Kec. Tambun Selatan, Kabupaten Bekasi, Jawa Barat 17510. Indonesia Legal Office</p>
+            <p>📞 +62 822-4288-7887</p>
+            <p>✉️ kingmada@zakyzhafran.com</p>
           </div>
         </div>
 
