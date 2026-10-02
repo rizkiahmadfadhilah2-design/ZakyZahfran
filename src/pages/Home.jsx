@@ -4,6 +4,9 @@ import Hero from "../components/sections/Hero";
 import TrustStrip from "../components/sections/TrustStrip";
 import About from "../components/sections/About";
 import Services from "../components/sections/Services"
+import Pricing from "../components/sections/Pricing";
+import WhyChoose from "../components/sections/WhyChoose";
+import Contact from "../components/sections/Contact";
 
 export default function Home() {
   const [lang, setLang] = useState("en");
@@ -34,6 +37,9 @@ export default function Home() {
       <TrustStrip lang={lang} />
       <About lang={lang} />
       <Services lang={lang} />
+      <Pricing lang={lang} />
+      <WhyChoose lang={lang} />
+      <Contact lang={lang} />
       {/* dst */}
 
     </div>

@@ -1,72 +1,154 @@
 import { useState } from "react";
 
-export default function Contact() {
+export default function Contact({ lang }) {
   const [form, setForm] = useState({
     name: "",
     email: "",
-    message: ""
+    message: "",
   });
 
-  const sendWA = () => {
-    const phone = "6281234567890";
+  const phone = "6281234567890";
+  const email = "legal@yourfirm.com";
 
+  const sendWA = () => {
     const text = `
 Nama: ${form.name}
 Email: ${form.email}
 Pesan: ${form.message}
     `;
 
-    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`);
+    window.open(
+      `https://wa.me/${phone}?text=${encodeURIComponent(text)}`
+    );
+  };
+
+  const sendEmail = () => {
+    const subject =
+      lang === "en"
+        ? "Legal Consultation Request"
+        : "Permintaan Konsultasi Hukum";
+
+    const body = `
+Name: ${form.name}
+Email: ${form.email}
+
+Message:
+${form.message}
+    `;
+
+    window.location.href = `mailto:${email}?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(body)}`;
   };
 
   return (
     <section id="contact" className="py-28 bg-white">
-      <div className="max-w-3xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-start">
 
-        {/* TITLE */}
-        <h2 className="text-4xl md:text-5xl font-semibold text-center mb-4 text-gray-900">
-          Konsultasi Sekarang
-        </h2>
+        {/* LEFT INFO */}
+        <div>
+          <p className="text-xs tracking-[0.3em] text-gray-400 uppercase">
+            {lang === "en" ? "Legal Consultation" : "Konsultasi Hukum"}
+          </p>
 
-        <p className="text-center text-gray-500 mb-12">
-          Diskusikan kebutuhan legal bisnis Anda dengan kami secara langsung.
-        </p>
+          <h2 className="text-4xl md:text-5xl font-semibold mt-3 text-gray-900">
+            {lang === "en"
+              ? "Speak With Our Legal Experts"
+              : "Konsultasikan Dengan Ahli Hukum Kami"}
+          </h2>
 
-        {/* FORM */}
-        <div className="space-y-5">
+          <p className="text-gray-500 mt-5 leading-relaxed">
+            {lang === "en"
+              ? "We help businesses resolve legal, tax, and compliance challenges."
+              : "Kami membantu menyelesaikan masalah hukum, pajak, dan kepatuhan bisnis."}
+          </p>
 
-          <input
-            className="w-full p-4 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-black/10 focus:border-black transition"
-            placeholder="Nama"
-            onChange={(e) => setForm({ ...form, name: e.target.value })}
-          />
+          {/* TRUST */}
+          <div className="mt-8 space-y-3 text-sm text-gray-600">
+            <p>✔ Confidential consultation</p>
+            <p>✔ Corporate & personal legal support</p>
+            <p>✔ Fast response for urgent matters</p>
+          </div>
 
-          <input
-            className="w-full p-4 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-black/10 focus:border-black transition"
-            placeholder="Email"
-            onChange={(e) => setForm({ ...form, email: e.target.value })}
-          />
-
-          <textarea
-            className="w-full p-4 border border-gray-200 rounded-xl h-32 outline-none focus:ring-2 focus:ring-black/10 focus:border-black transition resize-none"
-            placeholder="Pesan"
-            onChange={(e) => setForm({ ...form, message: e.target.value })}
-          />
-
-          {/* BUTTON */}
-          <button
-            onClick={sendWA}
-            className="w-full bg-black text-white py-4 rounded-xl hover:scale-[1.02] active:scale-[0.98] transition font-medium"
-          >
-            Kirim via WhatsApp
-          </button>
-
+          {/* CONTACT INFO */}
+          <div className="mt-10 space-y-2 text-sm text-gray-500">
+            <p>📍 Indonesia Legal Office</p>
+            <p>📞 +62 812-3456-7890</p>
+            <p>✉️ legal@yourfirm.com</p>
+          </div>
         </div>
 
-        {/* TRUST TEXT */}
-        <p className="text-center text-xs text-gray-400 mt-6">
-          Respons biasanya dalam 1x24 jam
-        </p>
+        {/* FORM */}
+        <div className="bg-gray-50 border border-gray-100 rounded-2xl p-8">
+
+          <h3 className="text-xl font-semibold text-gray-900 mb-6">
+            {lang === "en"
+              ? "Request Consultation"
+              : "Permintaan Konsultasi"}
+          </h3>
+
+          <div className="space-y-4">
+
+            <input
+              className="w-full p-4 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-black/10 focus:border-black transition"
+              placeholder={lang === "en" ? "Full Name" : "Nama Lengkap"}
+              onChange={(e) =>
+                setForm({ ...form, name: e.target.value })
+              }
+            />
+
+            <input
+              className="w-full p-4 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-black/10 focus:border-black transition"
+              placeholder="Email"
+              onChange={(e) =>
+                setForm({ ...form, email: e.target.value })
+              }
+            />
+
+            <textarea
+              className="w-full p-4 border border-gray-200 rounded-xl h-32 outline-none focus:ring-2 focus:ring-black/10 focus:border-black transition resize-none"
+              placeholder={
+                lang === "en"
+                  ? "Describe your case"
+                  : "Jelaskan kebutuhan Anda"
+              }
+              onChange={(e) =>
+                setForm({ ...form, message: e.target.value })
+              }
+            />
+
+            {/* PRIMARY WA */}
+            <button
+              onClick={sendWA}
+              className="w-full bg-black text-white py-4 rounded-xl hover:scale-[1.02] active:scale-[0.98] transition font-medium"
+            >
+              {lang === "en"
+                ? "Send via WhatsApp"
+                : "Kirim via WhatsApp"}
+            </button>
+
+          </div>
+
+          {/* SECONDARY ACTIONS (FIXED) */}
+          <div className="grid grid-cols-2 gap-3 mt-5">
+
+            <button
+              onClick={sendWA}
+              className="border border-gray-200 py-3 rounded-xl text-sm hover:bg-black hover:text-white transition"
+            >
+              WhatsApp
+            </button>
+
+            <button
+              onClick={sendEmail}
+              className="border border-gray-200 py-3 rounded-xl text-sm hover:bg-black hover:text-white transition"
+            >
+              Email
+            </button>
+
+          </div>
+
+        </div>
 
       </div>
     </section>

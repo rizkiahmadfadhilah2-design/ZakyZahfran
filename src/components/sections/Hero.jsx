@@ -1,40 +1,49 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Hero({ lang }) {
   const [open, setOpen] = useState(false);
 
-  return (
-    <section className="relative h-screen flex items-center bg-[#0B1220] text-white overflow-hidden">
+  // ESC close modal (UX improvement)
+  useEffect(() => {
+    const handleKey = (e) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, []);
 
-      {/* BACKGROUND GLOW */}
+  return (
+    <section className="relative min-h-screen flex items-center bg-[#0B1220] text-white overflow-hidden">
+
+      {/* BACKGROUND */}
       <div className="absolute w-[500px] h-[500px] bg-blue-500/20 blur-3xl rounded-full top-[-120px] right-[-120px]" />
       <div className="absolute w-[400px] h-[400px] bg-yellow-500/10 blur-3xl rounded-full bottom-[-120px] left-[-120px]" />
 
-      <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10">
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 items-center relative z-10">
 
-        {/* LEFT CONTENT */}
-        <div>
+        {/* LEFT */}
+        <div className="text-center md:text-left">
 
-          <div className="mb-4 inline-flex items-center gap-2 text-xs px-3 py-1 rounded-full bg-white/10 border border-white/20">
+          <div className="mb-4 inline-flex items-center gap-2 text-[10px] sm:text-xs px-3 py-1 rounded-full bg-white/10 border border-white/20">
             {lang === "en"
               ? "Trusted Legal & Tax Consultant"
               : "Konsultan Hukum & Pajak Terpercaya"}
           </div>
 
-          <h1 className="text-5xl font-semibold leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight">
             {lang === "en"
               ? "Strategic Legal & Tax Solutions for Business Growth"
               : "Solusi Hukum & Pajak Strategis untuk Pertumbuhan Bisnis"}
           </h1>
 
-          <p className="text-gray-300 mt-6 max-w-md leading-relaxed">
+          <p className="text-gray-300 mt-5 sm:mt-6 max-w-md mx-auto md:mx-0 leading-relaxed text-sm sm:text-base">
             {lang === "en"
               ? "We help businesses stay compliant, reduce tax risks, and build strong legal structures for sustainable growth."
-              : "Kami membantu bisnis tetap patuh regulasi, mengurangi risiko pajak, dan membangun struktur hukum yang kuat untuk pertumbuhan berkelanjutan."}
+              : "Kami membantu bisnis tetap patuh regulasi, mengurangi risiko pajak, dan membangun struktur hukum yang kuat."}
           </p>
 
           {/* STATS */}
-          <div className="flex gap-6 mt-8 text-sm text-gray-300">
+          <div className="flex justify-center md:justify-start gap-6 mt-8 text-sm text-gray-300">
 
             <div>
               <p className="text-white text-lg font-semibold">50+</p>
@@ -43,7 +52,7 @@ export default function Hero({ lang }) {
 
             <div>
               <p className="text-white text-lg font-semibold">100%</p>
-              <p>Compliance Focus</p>
+              <p>Compliance</p>
             </div>
 
             <div>
@@ -53,18 +62,18 @@ export default function Hero({ lang }) {
 
           </div>
 
-          {/* CTA */}
-          <div className="mt-10 flex gap-4">
+          {/* CTA (IMPROVED CONVERSION) */}
+          <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
 
             <button
               onClick={() => setOpen(true)}
-              className="bg-white text-black px-6 py-3 rounded-full hover:scale-105 transition"
+              className="bg-white text-black px-6 py-3 rounded-full font-medium hover:scale-105 active:scale-95 transition"
             >
               {lang === "en" ? "Book Consultation" : "Konsultasi"}
             </button>
 
             <a
-              href="https://wa.me/6281234567890?text=Halo%20saya%20ingin%20konsultasi%20tentang%20legal%20dan%20pajak"
+              href="https://wa.me/6281234567890?text=Halo%20saya%20ingin%20konsultasi"
               target="_blank"
               className="border border-white/20 px-6 py-3 rounded-full hover:bg-white/10 transition"
             >
@@ -73,29 +82,30 @@ export default function Hero({ lang }) {
 
           </div>
 
+          {/* TRUST MICRO LINE (IMPORTANT UPGRADE) */}
+          <p className="text-xs text-gray-400 mt-5">
+            Response within 24 hours • Confidential consultation
+          </p>
+
         </div>
 
-        {/* RIGHT VISUAL */}
+        {/* RIGHT */}
         <div className="flex justify-center">
 
-          <div className="relative">
+          <div className="relative mt-8 md:mt-0">
 
-            <div className="absolute w-[320px] h-[420px] bg-blue-500/30 blur-3xl rounded-2xl -z-10" />
+            <div className="absolute w-[280px] sm:w-[320px] h-[360px] sm:h-[420px] bg-blue-500/30 blur-3xl rounded-2xl -z-10" />
 
-            <div className="bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded-2xl">
+            <div className="bg-white/10 backdrop-blur-md border border-white/20 p-3 sm:p-4 rounded-2xl">
 
               <img
                 src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"
-                className="w-[280px] h-[360px] object-cover rounded-xl"
+                className="w-[240px] sm:w-[280px] md:w-[300px] h-[320px] sm:h-[360px] object-cover rounded-xl"
               />
 
-              <div className="mt-4 text-center">
-                <p className="text-sm text-white/70">
-                  {lang === "en"
-                    ? "Legal & Tax Advisory Firm"
-                    : "Firma Konsultan Hukum & Pajak"}
-                </p>
-              </div>
+              <p className="text-center text-xs sm:text-sm text-white/70 mt-4">
+                Legal & Tax Advisory Firm
+              </p>
 
             </div>
 
@@ -105,11 +115,17 @@ export default function Hero({ lang }) {
 
       </div>
 
-      {/* MODAL */}
+      {/* MODAL (UX FIXED) */}
       {open && (
-        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
+        <div
+          className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 px-4"
+          onClick={() => setOpen(false)}
+        >
 
-          <div className="bg-white w-[90%] max-w-md rounded-2xl p-6 text-black">
+          <div
+            className="bg-white w-full max-w-md rounded-2xl p-6 text-black"
+            onClick={(e) => e.stopPropagation()}
+          >
 
             <h2 className="text-xl font-semibold mb-4">
               {lang === "en" ? "Book Consultation" : "Form Konsultasi"}
@@ -123,10 +139,6 @@ export default function Hero({ lang }) {
 
               <button
                 className="bg-black text-white px-4 py-2 rounded-lg w-full"
-                onClick={() => {
-                  alert("Submitted");
-                  setOpen(false);
-                }}
               >
                 Submit
               </button>
