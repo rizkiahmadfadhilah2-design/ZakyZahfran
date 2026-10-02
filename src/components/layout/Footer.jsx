@@ -19,7 +19,7 @@ export default function Footer() {
         {/* CONTACT */}
         <div className="text-sm text-gray-400 space-y-2">
           <p className="text-white font-medium mb-3">Contact</p>
-          <p>Villa Bekasi Indah 1 No.2 Blok G1, RT.005/RW.012, Mangunjaya, Kec. Tambun Selatan, Kabupaten Bekasi, Jawa Barat 17510, Bekasi, Indonesia</p>
+          <p>Villa Bekasi Indah 1 Blok G1 No.2, RT.005/RW.012, Mangunjaya, Kec. Tambun Selatan, Kabupaten Bekasi, Jawa Barat 17510, Bekasi, Indonesia</p>
           <p>kingmada@zakyzhafran.com</p>
           <p>+62 822-4288-7887</p>
         </div>
